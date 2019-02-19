@@ -124,16 +124,21 @@ function QuickQueryController(config, schema, csv, error, types, query, operatio
             if (results.constructor === Array) {
                 text = results.length + " " + text;
             }
-
             $mdToast.show($mdToast.simple()
-                .textContent(text)
-                .action('view results')
-                .highlightAction(true)
-                .position('top right'))
+            .textContent(text)
+            .action('view results')
+            .highlightAction(true)
+            .position('top right'))
             .then(function(response) {
-                if (response === 'ok') {
-                    navigation.goTo('results');
-                }
+            if (response === 'ok') {
+                navigation.goTo('results');
+            }})
+            .catch(function() {
+            $mdToast.show($mdToast.simple()
+            .textContent('Error in previous Query, reset results and try again.')
+            .action('Ok')
+            .highlightAction(true)
+            .position('top right'))
             })
         });
 
