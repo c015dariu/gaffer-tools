@@ -134,11 +134,8 @@ function QuickQueryController(config, schema, csv, error, types, query, operatio
                 navigation.goTo('results');
             }})
             .catch(function() {
-            $mdToast.show($mdToast.simple()
-            .textContent('Error in previous Query, reset results and try again.')
-            .action('Ok')
-            .highlightAction(true)
-            .position('top right'))
+                // In the case of error, do nothing. Any other notification popups are susceptible
+                // to printing back out to the log so it's best to do nothing rather than send a new one.
             })
         });
 
